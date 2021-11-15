@@ -13,8 +13,7 @@ class Read_Ex():
 
         case=[]
         # 用例存放路径
-        case_path = os.path.join(os.getcwd() + '\Case\excel\海疆接口测试.xls') #读取excel表格用例，暂时只支持xls格式
-        #case_path = os.path.join(os.getcwd() + '\excel\海疆接口测试.xls')
+        case_path = os.path.join(os.getcwd() + '\Case\excel\大有课堂测试用例.xls') #读取excel表格用例，暂时只支持xls格式
         try:
             # 打开excel表格
             wb1 = xlrd.open_workbook(case_path)
@@ -34,9 +33,10 @@ class Read_Ex():
         data_type = data_value.index('参数类型')
         method = data_value.index('请求方式')
         headers = data_value.index('请求头')
-        value = data_value.index('用例级别')
+        dynamic = data_value.index('用例类型')
         status = data_value.index('状态码')
         expect = data_value.index('success')
+        sql = data_value.index('SQL')
 
 
 
@@ -52,8 +52,10 @@ class Read_Ex():
                 data_dict[headers] = table.cell(i,4).value
                 data_dict[data] = table.cell(i,5).value
                 data_dict[data_type] = table.cell(i,6).value
+                data_dict[dynamic] = table.cell(i, 8).value
                 data_dict[status] = table.cell(i,9).value
                 data_dict[expect] = table.cell(i,10).value
+                data_dict[sql] = table.cell(i, 12).value
 
                 case.append(data_dict)
             return case
@@ -71,5 +73,3 @@ class Read_Ex():
             workbook.save(path_name)
         except Exception as e:
             print(e)
-
-

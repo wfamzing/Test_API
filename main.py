@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # 3、打开一个文件，将result写入此file中
     fp = open(report_abspath, "wb")
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
-                                           title=u'海疆接口自动化测试报告,测试结果如下：',
+                                           title=u'大有课堂接口自动化测试报告,测试结果如下：',
                                            description=u'用例执行情况：')
     # 4、运行
     runner.run(all_case())

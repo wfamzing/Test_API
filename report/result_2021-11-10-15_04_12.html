@@ -1,0 +1,1467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>大有课堂接口自动化测试报告,测试结果如下：</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>大有课堂接口自动化测试报告,测试结果如下：</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2021-11-10 15:04:12</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:24.195993</p>
+<p class='attribute'><strong>状态:</strong> 通过 55</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>用例执行情况：</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>Case.test_001.TestCases</td>
+        <td>55</td>
+        <td>55</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',55)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_01_登录_admin</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: start ...
+11111
+8de74922-7ee8-4a9d-81c3-3e14fd73a973
+1.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_02_新增机构信息提交审核_课程不填</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: start ...
+11111
+{'code': 1, 'msg': '请选择则课程小类', 'data': None}
+2.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_03_新增机构信息提交审核_场景图不填</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>pt1.3: start ...
+11111
+{'code': 1, 'msg': '请上传内外景图', 'data': None}
+3.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_04_新增机构信息提交审核_主体不填</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        通过</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <pre>pt1.4: start ...
+11111
+{'code': 1, 'msg': '手机号格式不对', 'data': None}
+4.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_05_新增机构信息提交审核_收退费不填</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        通过</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <pre>pt1.5: start ...
+11111
+{'code': 1, 'msg': '请绑机构名称D', 'data': None}
+5.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_06_新增机构信息提交审核_账号不填</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        通过</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <pre>pt1.6: start ...
+11111
+{'code': 1, 'msg': '请绑定系统账号', 'data': None}
+6.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_07_新增机构信息提交审核_成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        通过</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <pre>pt1.7: start ...
+11111
+{'code': 0, 'msg': '提交成功', 'data': '1458329642229911553'}
+1458329642229911553
+7.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_08_通过机构id查询已提交信息</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        通过</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <pre>pt1.8: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'rxOrganizationMain': {'id': '1458329642229911553', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:15', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '巨奥科技有限公司', 'organizationCode': 'JG00000302', 'socialUniformCreditCode': 'test504', 'headerPerson': '傅秀珍', 'documentType': '身份证', 'documentCode': '321084195506237992', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '15042751930', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '海南省北镇县丰都廖路M座 579123', 'longitudeLatitude': '247，546', 'businessLicense': '504', 'schoolPermit': '测试啊办学', 'orgState': 1, 'preliminaryTime': None, 'finalTime': None, 'preliminaryBy': '', 'finalBy': ''}, 'imageList': [{'id': '1458329642284437505', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642288631809', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 1}, {'id': '1458329642305409026', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642309603329', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642313797633', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}], 'courseList': [{'id': '1458329642326380546', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'courseName': '测试啊', 'courseCategoryId': 1, 'categoryName': '青岛', 'courseSubclassId': 1, 'subclassName': '音乐', 'courseOutlineUrl': '啦啦啦', 'bucketName': '测试啊bnname', 'fileName': '测试啊filename'}], 'rxOrganizationRates': {'id': '1458329642259271681', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:15', 'remark': '', 'organizationId': '1458329642229911553', 'mainType': '培训机构', 'socialUniformCreditCode': 'test504', 'address': '海南省北镇县丰都廖路M座 579123', 'phone': '15042751930', 'bankName': '测试银行', 'bankAccount': '30346521178542', 'returnMoneyWay': '退费测试啊', 'invoiceSupportKind': 2}}}
+8.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_09_根据机构orgId修改审核状态</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        通过</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <pre>pt1.9: start ...
+11111
+{'code': 0, 'msg': None, 'data': True}
+9.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_10_修改机构信息提交审核</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        通过</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <pre>pt1.10: start ...
+11111
+{'code': 0, 'msg': '提交成功', 'data': '1458329642229911553'}
+10.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_11_登录_区教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        通过</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <pre>pt1.11: start ...
+11111
+b64acd78-e1de-4a95-a26f-b0e1eae57155
+11.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_12_区教委审核_拒绝</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        通过</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <pre>pt1.12: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+12.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_13_登录_admin</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        通过</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <pre>pt1.13: start ...
+11111
+11396cea-bb7d-4e25-9b75-115f3220ad26
+13.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_14_修改机构信息提交审核</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        通过</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <pre>pt1.14: start ...
+11111
+{'code': 0, 'msg': '提交成功', 'data': '1458329642229911553'}
+14.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_15_登录_区教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        通过</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <pre>pt1.15: start ...
+11111
+b9b25bef-21b8-490b-a482-8936bda0abca
+15.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_16_区教委审核_通过</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        通过</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <pre>pt1.16: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+16.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_17_区教委审核_通过后拒绝</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        通过</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <pre>pt1.17: start ...
+11111
+{'code': 1, 'msg': '机构:昊嘉科技有限公司当前状态不能进行初审', 'data': None}
+17.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_18_登录_市教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        通过</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <pre>pt1.18: start ...
+11111
+dc93276a-7562-4b4f-a023-f1cc0074ccdb
+18.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_19_市教委审核_拒绝</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        通过</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <pre>pt1.19: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+19.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_20_登录_admin</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        通过</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <pre>pt1.20: start ...
+11111
+04bd46dd-d8a2-4800-8fd2-76c4a33ea521
+20.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_21_修改机构信息提交审核</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        通过</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <pre>pt1.21: start ...
+11111
+{'code': 0, 'msg': '提交成功', 'data': '1458329642229911553'}
+21.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_22_登录_市教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        通过</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <pre>pt1.22: start ...
+11111
+6c3bccf6-4730-47ae-88b6-204d07f4e02e
+22.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_23_市教委审核_通过</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        通过</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <pre>pt1.23: start ...
+11111
+{'code': 1, 'msg': '机构:数字100传媒有限公司当前状态不能进行终审', 'data': None}
+23.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_24_登录_区教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        通过</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <pre>pt1.24: start ...
+11111
+147f8ee0-bcd8-46d1-ac75-8278a1d3ff68
+24.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_25_区教委审核_通过</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        通过</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <pre>pt1.25: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+25.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_26_登录_市教委</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        通过</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <pre>pt1.26: start ...
+11111
+aafc1ea9-85f3-437d-b11c-aaafe72c8226
+26.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_27_市教委审核_通过</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        通过</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <pre>pt1.27: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+27.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_28_根据机构Id查询详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        通过</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <pre>pt1.28: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'rxOrganizationMain': {'id': '1458329642229911553', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': '370200', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '数字100传媒有限公司', 'organizationCode': 'JG00000305', 'socialUniformCreditCode': 'test924', 'headerPerson': '杨欢', 'documentType': '身份证', 'documentCode': '620524199802015912', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13567598402', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '山西省惠州县闵行查路g座 430459', 'longitudeLatitude': '247，546', 'businessLicense': '924', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-10 15:04:26', 'finalTime': '2021-11-10 15:04:26', 'preliminaryBy': '370212', 'finalBy': '370200'}, 'imageList': [{'id': '1458329642284437505', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642288631809', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 1}, {'id': '1458329642305409026', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642309603329', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329642313797633', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329651096670210', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329651109253121', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 1}, {'id': '1458329651117641729', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329651126030337', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329651134418946', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329657664950273', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329657673338881', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 1}, {'id': '1458329657685921794', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329657694310401', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329657702699010', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': '测试啊url', 'bucketName': '测试', 'fileName': '测试啊场景图', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329672768638977', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试', 'fileName': '产品.wav', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329672781221889', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试', 'fileName': '产品.wav', 'isMainImage': 0, 'isInScene': 1}, {'id': '1458329672789610497', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试', 'fileName': '产品.wav', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329672797999105', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试', 'fileName': '产品.wav', 'isMainImage': 0, 'isInScene': 0}, {'id': '1458329672806387714', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'imageUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试', 'fileName': '产品.wav', 'isMainImage': 0, 'isInScene': 0}], 'courseList': [{'id': '1458329642326380546', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': None, 'modifiedTime': '2021-11-10 15:04:16', 'remark': '', 'organizationId': '1458329642229911553', 'courseName': '测试啊', 'courseCategoryId': 1, 'categoryName': '青岛', 'courseSubclassId': 1, 'subclassName': '音乐', 'courseOutlineUrl': '啦啦啦', 'bucketName': '测试啊bnname', 'fileName': '测试啊filename'}, {'id': '1458329651151196161', 'createdBy': None, 'createdTime': '2021-11-10 15:04:18', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:17', 'remark': '', 'organizationId': '1458329642229911553', 'courseName': '测试啊', 'courseCategoryId': 1, 'categoryName': '青岛', 'courseSubclassId': 1, 'subclassName': '音乐', 'courseOutlineUrl': '啦啦啦', 'bucketName': '测试啊bnname', 'fileName': '测试啊filename'}, {'id': '1458329657711087618', 'createdBy': None, 'createdTime': '2021-11-10 15:04:20', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:19', 'remark': '', 'organizationId': '1458329642229911553', 'courseName': '测试啊', 'courseCategoryId': 1, 'categoryName': '青岛', 'courseSubclassId': 1, 'subclassName': '音乐', 'courseOutlineUrl': '啦啦啦', 'bucketName': '测试啊bnname', 'fileName': '测试啊filename'}, {'id': '1458329672818970626', 'createdBy': None, 'createdTime': '2021-11-10 15:04:23', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'organizationId': '1458329642229911553', 'courseName': '测试啊', 'courseCategoryId': 1, 'categoryName': '青岛', 'courseSubclassId': 1, 'subclassName': '音乐', 'courseOutlineUrl': 'https://dummyimage.com/324x474', 'bucketName': '测试啊bnname', 'fileName': '产品.wav'}], 'rxOrganizationRates': {'id': '1458329642259271681', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:15', 'remark': '', 'organizationId': '1458329642229911553', 'mainType': '培训机构', 'socialUniformCreditCode': 'test504', 'address': '海南省北镇县丰都廖路M座 579123', 'phone': '15042751930', 'bankName': '测试银行', 'bankAccount': '30346521178542', 'returnMoneyWay': '退费测试啊', 'invoiceSupportKind': 2}}}
+28.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_29_登录_机构主体</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        通过</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <pre>pt1.29: start ...
+11111
+7d165c25-84e2-43c1-be3d-1519ad9518cb
+29.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_30_新增机构老师</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.30')" >
+        通过</a>
+
+    <div id='div_pt1.30' class="popup_window">
+        <pre>pt1.30: start ...
+11111
+{'code': 0, 'msg': None, 'data': '新增成功'}
+1458329690892226561
+30.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_31_修改机构老师</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        通过</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <pre>pt1.31: start ...
+11111
+{'code': 0, 'msg': None, 'data': None}
+31.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_32_机构老师分页查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        通过</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <pre>pt1.32: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'total': 1, 'list': [{'id': '1458329690892226561', 'createdBy': 'JG00000231', 'createdTime': '2021-11-10 15:04:27', 'modifiedBy': 'JG00000231', 'modifiedTime': '2021-11-10 15:04:29', 'remark': '', 'organizationCode': 'JG00000231', 'sysUserCode': '202111100306', 'teacherCode': '5539', 'teacherName': '刘淑英', 'teacherPhone': '13098426015', 'nationality': '中国', 'sex': 2, 'certificateType': 0, 'idCard': '5539', 'idCardFront': '2', 'idCardBack': '1', 'teacherCertificateCode': '1458329690892226561', 'teacherCertificateImage': 'https://dummyimage.com/147x226', 'teachPeople': 0, 'state': 1}], 'pageNum': 1, 'pageSize': 10, 'size': 1, 'startRow': 1, 'endRow': 1, 'pages': 1, 'prePage': 0, 'nextPage': 0, 'isFirstPage': True, 'isLastPage': True, 'hasPreviousPage': False, 'hasNextPage': False, 'navigatePages': 8, 'navigatepageNums': [1], 'navigateFirstPage': 1, 'navigateLastPage': 1}}
+32.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_33_机构老师id查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        通过</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <pre>pt1.33: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'id': '1458329690892226561', 'createdBy': 'JG00000231', 'createdTime': '2021-11-10 15:04:27', 'modifiedBy': 'JG00000231', 'modifiedTime': '2021-11-10 15:04:29', 'remark': '', 'organizationCode': 'JG00000231', 'sysUserCode': '202111100306', 'teacherCode': '5539', 'teacherName': '刘淑英', 'teacherPhone': '13098426015', 'nationality': '中国', 'sex': 2, 'certificateType': 0, 'idCard': '5539', 'idCardFront': '2', 'idCardBack': '1', 'teacherCertificateCode': '1458329690892226561', 'teacherCertificateImage': 'https://dummyimage.com/147x226', 'teachPeople': 0, 'state': 1}}
+33.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_34_通过id删除机构老师</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        通过</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <pre>pt1.34: start ...
+11111
+{'code': 0, 'msg': None, 'data': True}
+34.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_35_新增机构课程管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.35')" >
+        通过</a>
+
+    <div id='div_pt1.35' class="popup_window">
+        <pre>pt1.35: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'code': 0, 'msg': None, 'data': '新增成功'}}
+1458329701390569473
+35.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_36_修改课程管理</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.36')" >
+        通过</a>
+
+    <div id='div_pt1.36' class="popup_window">
+        <pre>pt1.36: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'code': 0, 'msg': None, 'data': '修改成功'}}
+36.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_37_撤回课程_查询课程</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.37')" >
+        通过</a>
+
+    <div id='div_pt1.37' class="popup_window">
+        <pre>pt1.37: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'id': '1458329701390569473', 'createdBy': None, 'createdTime': None, 'modifiedBy': None, 'modifiedTime': None, 'remark': None, 'organizationCode': 'JG00000231', 'organizationName': '13820753198', 'courseName': 'test2', 'courseCode': 'KC00000132', 'courseCategoryId': '1', 'courseSubclassId': '2', 'minAge': 14, 'maxAge': 18, 'provinceId': 0, 'provinceName': '', 'cityId': 1174, 'cityName': '青岛市', 'chargeStandardId': 0, 'chargeStandardName': 'ZLfvfrenvnGOtEyqEWGy', 'price': 100.0, 'referencePrice': None, 'amount': 10, 'imageUrl': '123', 'courseTarget': '', 'provideServices': '9713', 'courseFeatures': '', 'courseDesc': None, 'isApproval': 0, 'cgCount': None, 'teaCount': None, 'regCount': None, 'categoryName': '音乐类', 'subclassName': '古典', 'teachers': None, 'schoolAmount': 0, 'isPurchase': None, 'sourceTarget': None, 'sourceFeatures': None, 'sourceDesc': None, 'countryDTOList': [{'countryId': 1176, 'countryName': '崂山区'}], 'teacherDTOS': [{'teacherId': '9713', 'teacherName': '喻强'}]}}
+37.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_38_查询课程管理服务范围</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.38')" >
+        通过</a>
+
+    <div id='div_pt1.38' class="popup_window">
+        <pre>pt1.38: start ...
+11111
+{'code': 0, 'msg': None, 'data': [{'id': '1458329703168954370', 'createdBy': 'JG00000231', 'createdTime': '2021-11-10 15:04:30', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:30', 'remark': '', 'courseId': '1458329701390569473', 'orgCode': 'JG00000231', 'orgName': '13820753198', 'cityId': 1174, 'cityName': '青岛市', 'countryId': 1176, 'countryName': '崂山区'}]}
+38.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_39_课程统计</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        通过</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <pre>pt1.39: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'passApprovalCount': 1, 'pendingApprovalCount': 0}}
+39.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_40_课程管理_分页查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.40')" >
+        通过</a>
+
+    <div id='div_pt1.40' class="popup_window">
+        <pre>pt1.40: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'total': 2, 'list': [{'id': '1458329701390569473', 'createdBy': None, 'createdTime': None, 'modifiedBy': None, 'modifiedTime': None, 'remark': None, 'organizationCode': 'JG00000231', 'organizationName': '13820753198', 'courseName': 'test2', 'courseCode': 'KC00000132', 'courseCategoryId': '1', 'courseSubclassId': '2', 'minAge': 14, 'maxAge': 18, 'provinceId': 0, 'provinceName': '', 'cityId': 1174, 'cityName': '青岛市', 'chargeStandardId': 0, 'chargeStandardName': 'ZLfvfrenvnGOtEyqEWGy', 'price': 100.0, 'referencePrice': None, 'amount': 10, 'imageUrl': '123', 'courseTarget': '', 'provideServices': '9713', 'courseFeatures': '', 'courseDesc': None, 'isApproval': 0, 'cgCount': None, 'teaCount': None, 'regCount': None, 'categoryName': '音乐类', 'subclassName': '古典', 'teachers': '李浩,喻强', 'schoolAmount': 0, 'isPurchase': None}, {'id': '1458258005245558786', 'createdBy': None, 'createdTime': None, 'modifiedBy': None, 'modifiedTime': None, 'remark': None, 'organizationCode': 'JG00000231', 'organizationName': '13820753198', 'courseName': '二胡yyds！', 'courseCode': 'KC00000124', 'courseCategoryId': '1', 'courseSubclassId': '2', 'minAge': 10, 'maxAge': 20, 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'chargeStandardId': 1, 'chargeStandardName': '按学期', 'price': 99.0, 'referencePrice': None, 'amount': 22, 'imageUrl': 'http://r17m3ivqq.hd-bkt.clouddn.com/0684f00e867b4bb0b0c73d8493d3d159.png', 'courseTarget': '独奏', 'provideServices': '二胡一把', 'courseFeatures': '弹奏神曲', 'courseDesc': '一起二胡吧', 'isApproval': 2, 'cgCount': None, 'teaCount': None, 'regCount': None, 'categoryName': '音乐类', 'subclassName': '古典', 'teachers': '成飞', 'schoolAmount': 0, 'isPurchase': None}], 'pageNum': 1, 'pageSize': 10, 'size': 2, 'startRow': 1, 'endRow': 2, 'pages': 1, 'prePage': 0, 'nextPage': 0, 'isFirstPage': True, 'isLastPage': True, 'hasPreviousPage': False, 'hasNextPage': False, 'navigatePages': 8, 'navigatepageNums': [1], 'navigateFirstPage': 1, 'navigateLastPage': 1}}
+40.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_41_通过id删除课程管理_批量或单个_</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        通过</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <pre>pt1.41: start ...
+11111
+{'code': 0, 'msg': None, 'data': True}
+41.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_42_登录_admin_运营端_</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        通过</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <pre>pt1.42: start ...
+11111
+5079340d-10d7-492f-b58f-932071984780
+42.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_43_课程管理_查询课程管理服务范围</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.43')" >
+        通过</a>
+
+    <div id='div_pt1.43' class="popup_window">
+        <pre>pt1.43: start ...
+11111
+{'code': 0, 'msg': None, 'data': [{'id': '1458329703168954370', 'createdBy': 'JG00000231', 'createdTime': '2021-11-10 15:04:30', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:30', 'remark': '', 'courseId': '1458329701390569473', 'orgCode': 'JG00000231', 'orgName': '13820753198', 'cityId': 1174, 'cityName': '青岛市', 'countryId': 1176, 'countryName': '崂山区'}]}
+43.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.44' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_44_课程管理_查询授课老师</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.44')" >
+        通过</a>
+
+    <div id='div_pt1.44' class="popup_window">
+        <pre>pt1.44: start ...
+11111
+{'code': 0, 'msg': None, 'data': []}
+44.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.45' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_45_新增学校信息</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.45')" >
+        通过</a>
+
+    <div id='div_pt1.45' class="popup_window">
+        <pre>pt1.45: start ...
+11111
+{'code': 0, 'msg': None, 'data': None}
+1458329714145447938
+45.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.46' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_46_通过id查询学校详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.46')" >
+        通过</a>
+
+    <div id='div_pt1.46' class="popup_window">
+        <pre>pt1.46: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'id': '1458329714145447938', 'createdBy': 'wangfan', 'createdTime': '2021-11-10 15:04:33', 'modifiedBy': '', 'modifiedTime': '2021-11-10 15:04:32', 'remark': '', 'name': '状态', 'schoolCode': '20211110150432', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '陕西省永安县闵行宜都街z座 452293', 'longitudeLatitude': '', 'createSchool': '2021-10-31', 'schoolMotto': '经济更新以及作为只是.', 'telephone': '13604612378', 'headName': '王萍', 'headPhone': '13604612378', 'introduction': '经济更新以及作为只是.', 'status': 1, 'schoolImage': 'https://www.lorempixel.com/37/850', 'schoolBadge': 'https://www.lorempixel.com/37/850'}}
+46.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_47_通过id删除学校</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.47')" >
+        通过</a>
+
+    <div id='div_pt1.47' class="popup_window">
+        <pre>pt1.47: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+47.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_48_学校信息_分页查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.48')" >
+        通过</a>
+
+    <div id='div_pt1.48' class="popup_window">
+        <pre>pt1.48: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'total': 15, 'list': [{'id': '5165165165165651656', 'createdBy': '', 'createdTime': '2021-11-05 11:42:27', 'modifiedBy': '', 'modifiedTime': '2021-11-05 11:42:27', 'remark': '', 'name': '超越超越', 'schoolCode': '20211104114226', 'schoolNature': 1, 'schoolType': '1', 'provinceId': 1558, 'provinceName': '山西省', 'cityId': 5165, 'cityName': '太原市', 'countyId': 1145, 'countyName': '小店区', 'address': '行业云', 'longitudeLatitude': '', 'createSchool': None, 'schoolMotto': '他', 'telephone': ' 让人去', 'headName': '       钱', 'headPhone': ' 16516516516', 'introduction': '5555416', 'status': 1, 'schoolImage': '', 'schoolBadge': ''}, {'id': '1458320953737564162', 'createdBy': 'wangfan', 'createdTime': '2021-11-10 14:29:44', 'modifiedBy': '', 'modifiedTime': '2021-11-10 14:29:44', 'remark': '', 'name': '崂山实验小学', 'schoolCode': '20211110142944', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '山东省崂山区中韩街J座 494750', 'longitudeLatitude': '', 'createSchool': '2000-10-05', 'schoolMotto': '下载希望.', 'telephone': '13931548321', 'headName': '孔欢及', 'headPhone': '13931548321', 'introduction': '希望.', 'status': 2, 'schoolImage': 'https://placeimg.com/793/669/any', 'schoolBadge': 'https://placeimg.com/793/669/any'}, {'id': '1457906672168615937', 'createdBy': 'operate', 'createdTime': '2021-11-09 11:03:31', 'modifiedBy': '', 'modifiedTime': '2021-11-09 11:03:31', 'remark': '', 'name': '崂山区第十中学', 'schoolCode': '20211109110331', 'schoolNature': 1, 'schoolType': '2', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1178, 'countyName': '崂山区', 'address': '高层次', 'longitudeLatitude': '', 'createSchool': '2021-11-01', 'schoolMotto': '德育', 'telephone': '13000123546', 'headName': '李伦', 'headPhone': '13000012345', 'introduction': '共同进步', 'status': 1, 'schoolImage': 'http://r17m3ivqq.hd-bkt.clouddn.com/a86f02c669ef4335ac7a573a8692c426.png', 'schoolBadge': 'http://r17m3ivqq.hd-bkt.clouddn.com/38a477badfbf4c8ab382cfdd41f58560.png'}, {'id': '1457904650723803138', 'createdBy': 'wangfan', 'createdTime': '2021-11-09 10:55:29', 'modifiedBy': '', 'modifiedTime': '2021-11-09 10:55:29', 'remark': '', 'name': '一个', 'schoolCode': '20211109105529', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '山东省崂山区南溪曾街J座 494750', 'longitudeLatitude': '', 'createSchool': '2000-10-05', 'schoolMotto': '的人由于下载希望.', 'telephone': '13931548296', 'headName': '孔欢', 'headPhone': '13931548297', 'introduction': '的人由于下载希望.', 'status': 1, 'schoolImage': 'https://placeimg.com/793/669/any', 'schoolBadge': 'https://placeimg.com/793/669/any'}, {'id': '1457552774442520577', 'createdBy': 'wangfan', 'createdTime': '2021-11-08 11:37:16', 'modifiedBy': '', 'modifiedTime': '2021-11-08 11:37:16', 'remark': '', 'name': '详细', 'schoolCode': '20211108113716', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '重庆市浩市门头沟银川路Z座 717203', 'longitudeLatitude': '120.46923,36.10717', 'createSchool': '2021-10-24', 'schoolMotto': '这里这是那个一个重要数据空间.', 'telephone': '15001485967', 'headName': '李龙', 'headPhone': '15001485967', 'introduction': '这里这是那个一个重要数据空间.', 'status': 1, 'schoolImage': 'https://placeimg.com/557/972/any', 'schoolBadge': 'https://placeimg.com/557/972/any'}, {'id': '1457533663138385922', 'createdBy': 'wangfan', 'createdTime': '2021-11-08 10:21:19', 'modifiedBy': '', 'modifiedTime': '2021-11-08 10:21:19', 'remark': '', 'name': '由于', 'schoolCode': '20211108102119', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '福建省梧州市花溪刘路M座 449742', 'longitudeLatitude': '120.46923,36.10717', 'createSchool': '2021-10-13', 'schoolMotto': '表示不会继续希望女人.', 'telephone': '13245207183', 'headName': '戴玉兰', 'headPhone': '13245207183', 'introduction': '表示不会继续希望女人.', 'status': 1, 'schoolImage': 'https://www.lorempixel.com/94/497', 'schoolBadge': 'https://www.lorempixel.com/94/497'}, {'id': '1457532942871531522', 'createdBy': 'wangfan', 'createdTime': '2021-11-08 10:18:27', 'modifiedBy': '', 'modifiedTime': '2021-11-08 10:18:27', 'remark': '', 'name': '留言', 'schoolCode': '20211108101827', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '香港特别行政区成市南溪刘街s座 516149', 'longitudeLatitude': '120.46923,36.10717', 'createSchool': '2021-10-13', 'schoolMotto': '发布然后认为免费.', 'telephone': '13597143082', 'headName': '黄明', 'headPhone': '13597143082', 'introduction': '发布然后认为免费.', 'status': 1, 'schoolImage': 'https://www.lorempixel.com/571/398', 'schoolBadge': 'https://www.lorempixel.com/571/398'}, {'id': '1456246574849462274', 'createdBy': '', 'createdTime': '2021-11-04 13:06:53', 'modifiedBy': '', 'modifiedTime': '2021-11-04 13:06:53', 'remark': '', 'name': 'xxxx', 'schoolCode': '20211104210653', 'schoolNature': 1, 'schoolType': '1', 'provinceId': 1314, 'provinceName': '陕西省', 'cityId': 1328, 'cityName': '铜川市', 'countyId': 1178, 'countyName': '印台区', 'address': 'fsdf', 'longitudeLatitude': '109.10208,35.1169', 'createSchool': '2020-01-06', 'schoolMotto': 'dsad', 'telephone': 'dasd', 'headName': 'adda', 'headPhone': '12573859483', 'introduction': 'fs', 'status': 1, 'schoolImage': '', 'schoolBadge': ''}, {'id': '1456204202446966785', 'createdBy': '', 'createdTime': '2021-11-04 10:18:31', 'modifiedBy': '', 'modifiedTime': '2021-11-04 10:18:31', 'remark': '', 'name': '一个', 'schoolCode': '20211104181831', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '江西省璐县南溪曾街J座 494750', 'longitudeLatitude': '120.46923,36.10717', 'createSchool': '2021-10-05', 'schoolMotto': '的人由于下载希望.', 'telephone': '13931548296', 'headName': '孔欢', 'headPhone': '13931548296', 'introduction': '的人由于下载希望.', 'status': 1, 'schoolImage': 'https://placeimg.com/793/669/any', 'schoolBadge': 'https://placeimg.com/793/669/any'}, {'id': '1456194936239575041', 'createdBy': '', 'createdTime': '2021-11-04 09:41:42', 'modifiedBy': '', 'modifiedTime': '2021-11-04 09:41:42', 'remark': '', 'name': '因此', 'schoolCode': '20211104174142', 'schoolNature': 2, 'schoolType': '1', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1176, 'countyName': '崂山区', 'address': '四川省兰州县六枝特张路m座 765165', 'longitudeLatitude': '120.46923,36.10717', 'createSchool': '2021-10-21', 'schoolMotto': '最新上海法律显示组织注意.', 'telephone': '13398013247', 'headName': '杨丽娟', 'headPhone': '13398013247', 'introduction': '最新上海法律显示组织注意.', 'status': 1, 'schoolImage': 'https://placekitten.com/393/154', 'schoolBadge': 'https://placekitten.com/393/154'}], 'pageNum': 1, 'pageSize': 10, 'size': 10, 'startRow': 1, 'endRow': 10, 'pages': 2, 'prePage': 0, 'nextPage': 2, 'isFirstPage': True, 'isLastPage': False, 'hasPreviousPage': False, 'hasNextPage': True, 'navigatePages': 8, 'navigatepageNums': [1, 2], 'navigateFirstPage': 1, 'navigateLastPage': 2}}
+1458329642229911553
+48.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.49' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_49_机构管理_根据ID查询详情</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.49')" >
+        通过</a>
+
+    <div id='div_pt1.49' class="popup_window">
+        <pre>pt1.49: start ...
+11111
+{'code': 0, 'msg': None, 'data': None}
+49.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.50' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_50_查询机构数量</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.50')" >
+        通过</a>
+
+    <div id='div_pt1.50' class="popup_window">
+        <pre>pt1.50: start ...
+11111
+{'code': 0, 'msg': None, 'data': 37}
+50.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.51' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_51_机构管理_分页查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.51')" >
+        通过</a>
+
+    <div id='div_pt1.51' class="popup_window">
+        <pre>pt1.51: start ...
+11111
+{'code': 0, 'msg': None, 'data': {'total': 14, 'list': [{'id': '1458329642229911553', 'createdBy': None, 'createdTime': '2021-11-10 15:04:16', 'modifiedBy': '370200', 'modifiedTime': '2021-11-10 15:04:23', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '数字100传媒有限公司', 'organizationCode': 'JG00000305', 'socialUniformCreditCode': 'test924', 'headerPerson': '杨欢', 'documentType': '身份证', 'documentCode': '620524199802015912', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13567598402', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '山西省惠州县闵行查路g座 430459', 'longitudeLatitude': '247，546', 'businessLicense': '924', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-10 15:04:26', 'finalTime': '2021-11-10 15:04:26', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457975557626585090', 'createdBy': '', 'createdTime': '2021-11-09 15:37:15', 'modifiedBy': '370200', 'modifiedTime': '2021-11-09 15:37:15', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '万迅电脑信息有限公司', 'organizationCode': 'JG00000294', 'socialUniformCreditCode': 'test2368', 'headerPerson': '林秀兰', 'documentType': '身份证', 'documentCode': '632525200108084024', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13374825016', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '四川省海门县金平济南路k座 184665', 'longitudeLatitude': '247，546', 'businessLicense': '2368', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-09 15:37:24', 'finalTime': '2021-11-09 15:37:24', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457974741209505793', 'createdBy': '', 'createdTime': '2021-11-09 15:34:00', 'modifiedBy': '370200', 'modifiedTime': '2021-11-09 15:34:00', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '太极科技有限公司', 'organizationCode': 'JG00000287', 'socialUniformCreditCode': 'test6331', 'headerPerson': '徐英', 'documentType': '身份证', 'documentCode': '513200196505122152', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13153147286', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '甘肃省想县南长程路Y座 641731', 'longitudeLatitude': '247，546', 'businessLicense': '6331', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-09 15:34:08', 'finalTime': '2021-11-09 15:34:09', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457966939946713089', 'createdBy': '', 'createdTime': '2021-11-09 15:03:00', 'modifiedBy': '370200', 'modifiedTime': '2021-11-09 15:03:00', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '昂歌信息网络有限公司', 'organizationCode': 'JG00000277', 'socialUniformCreditCode': 'test6686', 'headerPerson': '陆浩', 'documentType': '身份证', 'documentCode': '445222199303180616', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13014562978', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '辽宁省南京市闵行六安街s座 657644', 'longitudeLatitude': '247，546', 'businessLicense': '6686', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-09 15:03:07', 'finalTime': '2021-11-09 15:03:08', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457648674896711682', 'createdBy': '', 'createdTime': '2021-11-08 17:58:20', 'modifiedBy': '370200', 'modifiedTime': '2021-11-08 17:58:20', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '埃雷拉', 'organizationCode': 'JG00000262', 'socialUniformCreditCode': '123456789123456', 'headerPerson': '客家话', 'documentType': '身份证', 'documentCode': '370281199912121212', 'idCardFront': 'http://r17m3ivqq.hd-bkt.clouddn.com/eafc28f4457f4de9ab47243cfc4635b3.png', 'idCardBack': 'http://r17m3ivqq.hd-bkt.clouddn.com/66885a77926a4dc4ab9731c40290b82a.png', 'phone': '15912345678', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1178, 'countyName': '崂山区', 'address': '崂山', 'longitudeLatitude': '120.619109,36.18472', 'businessLicense': 'http://r17m3ivqq.hd-bkt.clouddn.com/aadc5881e5654202a60349ae43d3deed.png', 'schoolPermit': 'http://r17m3ivqq.hd-bkt.clouddn.com/2ac0d5fba9a94ec18813ca193fac7c2b.png', 'orgState': 4, 'preliminaryTime': '2021-11-08 17:59:15', 'finalTime': '2021-11-08 18:00:00', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457639266099675137', 'createdBy': '', 'createdTime': '2021-11-08 17:20:57', 'modifiedBy': '370200', 'modifiedTime': '2021-11-08 17:20:57', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '爱当家', 'organizationCode': 'JG00000261', 'socialUniformCreditCode': '123456789123456789', 'headerPerson': 'ws', 'documentType': '身份证', 'documentCode': '370211199912121212', 'idCardFront': 'http://r17m3ivqq.hd-bkt.clouddn.com/d20fd4a46443408bae939e4500fc2316.png', 'idCardBack': 'http://r17m3ivqq.hd-bkt.clouddn.com/0a4f5894e98d4ca1b8d63725fbc5bdcd.png', 'phone': '13612345678', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1178, 'countyName': '崂山区', 'address': '崂山', 'longitudeLatitude': '120.619109,36.18472', 'businessLicense': 'http://r17m3ivqq.hd-bkt.clouddn.com/161534233af84c3580d789a0a785bf32.png', 'schoolPermit': 'http://r17m3ivqq.hd-bkt.clouddn.com/c24f7ca136e944be91914ed9c0b41fea.png', 'orgState': 4, 'preliminaryTime': '2021-11-08 17:22:23', 'finalTime': '2021-11-08 17:22:56', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457553420310810626', 'createdBy': '', 'createdTime': '2021-11-08 11:39:50', 'modifiedBy': '370200', 'modifiedTime': '2021-11-08 11:39:50', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '货拉拉', 'organizationCode': 'JG00000259', 'socialUniformCreditCode': '123456789123456789', 'headerPerson': '岁的法国', 'documentType': '身份证', 'documentCode': '370201199912121212', 'idCardFront': 'http://r17m3ivqq.hd-bkt.clouddn.com/f59c519177734e96b761a8f85c644f82.png', 'idCardBack': 'http://r17m3ivqq.hd-bkt.clouddn.com/38223ab686a74c2eafaaf79774e48a28.png', 'phone': '13312345678', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1178, 'countyName': '崂山区', 'address': '崂山区高层次', 'longitudeLatitude': '120.466523,36.139903', 'businessLicense': 'http://r17m3ivqq.hd-bkt.clouddn.com/bf167b2b038b4652b45a8292183a570a.png', 'schoolPermit': 'http://r17m3ivqq.hd-bkt.clouddn.com/2bb67582bf734e2493a19b5547d4e501.png', 'orgState': 4, 'preliminaryTime': '2021-11-08 13:21:22', 'finalTime': '2021-11-08 13:22:07', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1457552709531471874', 'createdBy': '', 'createdTime': '2021-11-08 11:37:00', 'modifiedBy': '370200', 'modifiedTime': '2021-11-08 11:37:00', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '联通时科传媒有限公司', 'organizationCode': 'JG00000257', 'socialUniformCreditCode': 'test3924', 'headerPerson': '王强', 'documentType': '身份证', 'documentCode': '231000193505086274', 'idCardFront': '测试正', 'idCardBack': '测试反', 'phone': '13851496387', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛', 'countyId': 1178, 'countyName': '崂山', 'address': '贵州省兴安盟县普陀成都路T座 819194', 'longitudeLatitude': '247，546', 'businessLicense': '3924', 'schoolPermit': '测试啊办学', 'orgState': 4, 'preliminaryTime': '2021-11-08 11:37:08', 'finalTime': '2021-11-08 11:37:08', 'preliminaryBy': '370212', 'finalBy': '370200'}, {'id': '1456557003652055041', 'createdBy': '', 'createdTime': '2021-11-05 17:40:25', 'modifiedBy': '410100', 'modifiedTime': '2021-11-05 17:40:25', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': 'xzsjpjg', 'organizationCode': 'JG00000249', 'socialUniformCreditCode': '185665555757585', 'headerPerson': 'yh', 'documentType': '身份证', 'documentCode': '371524199611012117', 'idCardFront': 'http://r17m3ivqq.hd-bkt.clouddn.com/275c65c2a7104e7db304060e99a829c8.jpg', 'idCardBack': 'http://r17m3ivqq.hd-bkt.clouddn.com/22f702ffb3a341b4920af2cc11b87d73.jpg', 'phone': '13053689773', 'provinceId': 2, 'provinceName': '河南省', 'cityId': 104, 'cityName': '郑州市', 'countyId': 107, 'countyName': '新郑市', 'address': 'xinzhengshiz', 'longitudeLatitude': '113.739278,34.394496', 'businessLicense': 'http://r17m3ivqq.hd-bkt.clouddn.com/d1235315cc97409e8a569d6eec1d39f1.jpg', 'schoolPermit': 'http://r17m3ivqq.hd-bkt.clouddn.com/b93d737b355e4104b1a8e999c7c015b7.jpg', 'orgState': 4, 'preliminaryTime': '2021-11-05 17:41:47', 'finalTime': '2021-11-05 17:42:39', 'preliminaryBy': '410184', 'finalBy': '410100'}, {'id': '1456247338544140289', 'createdBy': '', 'createdTime': '2021-11-04 13:09:55', 'modifiedBy': '12345678911', 'modifiedTime': '2021-11-04 13:09:55', 'remark': '', 'mainType': '培训机构', 'mainTypeKind': 1, 'mainTypeName': '通天塔', 'organizationCode': 'JG00000245', 'socialUniformCreditCode': '165542032125632', 'headerPerson': '惹我', 'documentType': '身份证', 'documentCode': '741258963', 'idCardFront': 'http://r17m3ivqq.hd-bkt.clouddn.com/89bec65c8afb45e0b6f7db759bc03dbf.jpg', 'idCardBack': 'http://r17m3ivqq.hd-bkt.clouddn.com/a426fd859d5f45f0bd8e913ad10742c1.jpg', 'phone': '15098733739', 'provinceId': 1161, 'provinceName': '山东省', 'cityId': 1174, 'cityName': '青岛市', 'countyId': 1178, 'countyName': '崂山区', 'address': '崂山区高层次', 'longitudeLatitude': '120.466523,36.139903', 'businessLicense': 'http://r17m3ivqq.hd-bkt.clouddn.com/cf9dcf83bbf5450fb2f3267bdc1b71e3.jpg', 'schoolPermit': 'http://r17m3ivqq.hd-bkt.clouddn.com/28ead74b63064f52a6c97d5deb5c8484.jpg', 'orgState': 4, 'preliminaryTime': '2021-11-04 21:22:31', 'finalTime': '2021-11-04 21:23:32', 'preliminaryBy': '7894561230', 'finalBy': '12345678911'}], 'pageNum': 1, 'pageSize': 10, 'size': 10, 'startRow': 1, 'endRow': 10, 'pages': 2, 'prePage': 0, 'nextPage': 2, 'isFirstPage': True, 'isLastPage': False, 'hasPreviousPage': False, 'hasNextPage': True, 'navigatePages': 8, 'navigatepageNums': [1, 2], 'navigateFirstPage': 1, 'navigateLastPage': 2}}
+51.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.52' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_52_登录_学校端_</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.52')" >
+        通过</a>
+
+    <div id='div_pt1.52' class="popup_window">
+        <pre>pt1.52: start ...
+11111
+08654838-ad95-43dd-b399-b2fb49b38b2d
+52.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.53' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_53_新增学校教师</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.53')" >
+        通过</a>
+
+    <div id='div_pt1.53' class="popup_window">
+        <pre>pt1.53: start ...
+11111
+{'code': 0, 'msg': None, 'data': '操作成功'}
+1458329729756647426
+53.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_54_新增行政班级</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.54')" >
+        通过</a>
+
+    <div id='div_pt1.54' class="popup_window">
+        <pre>pt1.54: start ...
+11111
+{'code': 0, 'msg': None, 'data': True}
+1458329731467923458
+54.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.55' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_api_55_修改行政班级</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.55')" >
+        通过</a>
+
+    <div id='div_pt1.55' class="popup_window">
+        <pre>pt1.55: start ...
+11111
+{'code': 0, 'msg': None, 'data': True}
+55.0
+pass
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>55</td>
+            <td>55</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:55, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

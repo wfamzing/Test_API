@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 接口自动化测试脚本技术文档
 ## 概述
 **此脚本采用python+requests+excel+unittest+ddt接口自动化数据驱动并生成html报告**
@@ -34,7 +33,17 @@
 ![Image](pic/6.png)
 ## 生成测试报告
 ![Image](pic/7.png)
+## GitHub项目地址
+[https://github.com/wfamzing/Test_API#apitest](https://github.com/wfamzing/Test_API#apitest)
 
-=======
-# apitest
->>>>>>> 1b3ecb6c584ea4420f1888ea91fd4b948fb582af
+## 对自动化接口完善的一些想法
+这个脚本目前算是比较初级阶段自动化还是需要人来用编译器去执行它，后期可以完善成web端，在web端去执行，测试人员只需将心思花在用例设计上，同时还有一些功能待完善，如测试完后的数据清理模块。后期再深入自动化方面研究，可引入持续集成概念，在研发人员提交版本时自动触发编译，然后自动构建测试环境，执行自动化脚本，输出测试报告。对于这些功能实现docker容器技术是不二之选。
+
+* * *
+## 更新
+### 加入动态传参
+![Image](pic/8.png)
+### 加入sql查询
+
+![Image](pic/9.png)
+
