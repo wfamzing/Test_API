@@ -1,11 +1,11 @@
 import pymysql
 def connectDB(sql,args=None):
     mydb = pymysql.connect(
-        host="101.201.233.118",
-        port=33033,
+        host="xxx.xxx.xxx.118",
+        port=xxxxx,
         user="root",
-        password="123123",
-        database="ruoxi_db"
+        password="xxxxxx",
+        database="xxxxx"
     )
 
     cursor = mydb.cursor()
